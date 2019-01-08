@@ -16,7 +16,7 @@ Powershell Gallery (PS 5.0, Preferred method)
 `install-module SomeTestModule`
 
 Manual Installation
-`iex (New-Object Net.WebClient).DownloadString("https://github.com/justin-p/ModuleBuild/raw/master/Install.ps1")`
+`iex (New-Object Net.WebClient).DownloadString("https://github.com/justin-p/SomeTestModule/raw/master/Install.ps1")`
 
 Or clone this repository to your local machine, extract, go to the .\releases\SomeTestModule directory
 and import the module to your session to test, but not install this module.
@@ -45,4 +45,4 @@ the latest meta test from the claudiospizzi/PowerShellModuleBase repository.
 
 **Author:** Justin Perdok
 
-**Website:** https://github.com/justin-p/ModuleBuild
+**Website:** https://github.com/justin-p/SomeTestModule

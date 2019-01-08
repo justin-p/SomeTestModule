@@ -1,7 +1,7 @@
 ﻿---
 Module Name: SomeTestModule
-Module Guid: 9f89b03c-a465-4d11-bfd7-f2b4890e575f
-Download Help Link: https://github.com/justin-p/ModuleBuild/release/SomeTestModule/docs/SomeTestModule.md
+Module Guid: ce8e0547-fbaa-42fa-b3c3-39dae45f1727
+Download Help Link: https://github.com/justin-p/SomeTestModule/release/SomeTestModule/docs/SomeTestModule.md
 Help Version: 0.0.1
 Locale: en-US
 ---

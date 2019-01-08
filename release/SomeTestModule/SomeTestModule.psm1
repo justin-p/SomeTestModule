@@ -159,7 +159,7 @@ function Get-CallerPreference {
     <#
     .EXTERNALHELP SomeTestModule-help.xml
     .LINK
-        https://github.com/justin-p/ModuleBuild/tree/master/release/0.0.1/docs/Functions/Get-CallerPreference.md
+        https://github.com/justin-p/SomeTestModule/tree/master/release/0.0.1/docs/Functions/Get-CallerPreference.md
     #>
 
     [CmdletBinding(DefaultParameterSetName = 'AllVariables')]

@@ -17,9 +17,9 @@ if ((Get-Variable 'BuildEnv' -ErrorAction:SilentlyContinue) -eq $null) {
         Encoding = 'utf8'
         ModuleToBuild = 'SomeTestModule'
         ModuleVersion = '0.0.1'
-        ModuleWebsite = 'https://github.com/justin-p/ModuleBuild'
+        ModuleWebsite = 'https://github.com/justin-p/SomeTestModule'
         ModuleCopyright = "(c) $((get-date).Year.ToString()) Justin Perdok. All rights reserved."
-        ModuleLicenseURI = 'https://github.com/justin-p/ModuleBuild/LICENSE.md'
+        ModuleLicenseURI = 'https://github.com/justin-p/SomeTestModule/LICENSE.md'
         ModuleTags = 'SomeTestModule' -split ','
         ModuleAuthor = 'Justin Perdok'
         ModuleDescription = 'SomeTestModule'
