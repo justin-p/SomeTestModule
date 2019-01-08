@@ -465,28 +465,23 @@ task UpdateCBH {
 task AnalyzeModuleRelease -if {$Script:BuildEnv.OptionAnalyzeCode} {
     Write-Description White 'Analyzing the project with ScriptAnalyzer' -accent
     $StageReleasePath = Join-Path (Join-Path $BuildRoot $Script:BuildEnv.ScratchFolder) $Script:BuildEnv.BaseReleaseFolder
-    $Analysis = Invoke-ScriptAnalyzer -Path $StageReleasePath
-    $AnalysisErrors = @($Analysis | Where-Object {@('Information', 'Warning') -notcontains $_.Severity})
-    if ($AnalysisErrors.Count -ne 0) {
-        Write-Build White 'The following errors came up in the script analysis:' -level 2
-        $AnalysisErrors
-        Write-Build
-        Write-Build White "Note that this was from the script analysis run against $StageReleasePath" -Level 2
-        Prompt-ForBuildBreak -CustomError $AnalysisErrors
+    $Analysis = Invoke-ScriptAnalyzer -Path $StageReleasePath -Settings $Script:BuildEnv.OptionAnalyzeCodeSettings
+    if ($($Analysis.SuggestedCorrections.Count)) {
+        Write-Description White "Note that this was from the script analysis run against $StageReleasePath" -level 2
+        Write-Description White 'The following errors came up in the script analysis:' -level 2
+        $Analysis | Format-Table -AutoSize
+        Write-Error "$($Analysis.SuggestedCorrections.Count) linting errors or warnings were found. The build cannot continue." -ErrorAction Stop
     }
 }
 
 # Synopsis: Run PSScriptAnalyzer against the public source files.
 task AnalyzePublic {
-    Write-Description White 'Analyzing the public source files with ScriptAnalyzer.' -accent
-    $Analysis = Invoke-ScriptAnalyzer -Path (Join-Path $BuildRoot $Script:BuildEnv.PublicFunctionSource)
-    $AnalysisErrors = @($Analysis | Where-Object {@('Information', 'Warning') -notcontains $_.Severity})
-
-    if ($AnalysisErrors.Count -ne 0) {
-        Write-Description White 'The following errors came up in the script analysis:' -level 2
-        $AnalysisErrors
-        Write-Description
+    Write-Description White "Analyzing the public source files with ScriptAnalyzer." -accent
+    $Analysis = Invoke-ScriptAnalyzer -Path (Join-Path $BuildRoot $Script:BuildEnv.PublicFunctionSource) -Settings $Script:BuildEnv.OptionAnalyzeCodeSettings
+    if ($($Analysis.SuggestedCorrections.Count)) {
         Write-Description White "Note that this was from the script analysis run against $($Script:BuildEnv.PublicFunctionSource)" -level 2
+        Write-Description Red "$($Analysis.SuggestedCorrections.Count) linting errors, warnings or suggestions were found:" -level 2
+        $Analysis | Format-Table -AutoSize
     }
 }
 

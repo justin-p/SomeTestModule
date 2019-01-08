@@ -12,13 +12,13 @@
 RootModule = 'SomeTestModule.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion = '0.0.4'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
-GUID = 'ce8e0547-fbaa-42fa-b3c3-39dae45f1727'
+GUID = '946be831-4913-4e8c-a73b-8b4c08c183a0'
 
 # Author of this module
 Author = 'Justin Perdok'

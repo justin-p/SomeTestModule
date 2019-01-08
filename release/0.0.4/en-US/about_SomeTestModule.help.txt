@@ -1,0 +1,17 @@
+TOPIC
+    about_SomeTestModule
+
+SHORT DESCRIPTION
+    SomeTestModule
+
+LONG DESCRIPTION
+    SomeTestModule
+
+EXAMPLES
+    TBD
+
+KEYWORDS
+    SomeTestModule
+
+SEE ALSO
+    https://github.com/justin-p/SomeTestModule

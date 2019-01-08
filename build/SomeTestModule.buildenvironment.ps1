@@ -16,7 +16,7 @@ if ((Get-Variable 'BuildEnv' -ErrorAction:SilentlyContinue) -eq $null) {
         ForceInstallModule = $False
         Encoding = 'utf8'
         ModuleToBuild = 'SomeTestModule'
-        ModuleVersion = '0.0.1'
+        ModuleVersion = '0.0.4'
         ModuleWebsite = 'https://github.com/justin-p/SomeTestModule'
         ModuleCopyright = "(c) $((get-date).Year.ToString()) Justin Perdok. All rights reserved."
         ModuleLicenseURI = 'https://github.com/justin-p/SomeTestModule/LICENSE.md'
@@ -26,6 +26,7 @@ if ((Get-Variable 'BuildEnv' -ErrorAction:SilentlyContinue) -eq $null) {
 
         # Options - These affect how your build will be run.
         OptionAnalyzeCode = $True
+        OptionAnalyzeCodeSettings = 'PSGallery'        
         OptionCodeHealthReport = $True
         OptionCombineFiles = $TRUE
         OptionTranscriptEnabled = $false
