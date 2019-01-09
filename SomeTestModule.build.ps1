@@ -465,22 +465,22 @@ task UpdateCBH {
 task AnalyzeModuleRelease -if {$Script:BuildEnv.OptionAnalyzeCode} {
     Write-Description White 'Analyzing the project with ScriptAnalyzer' -accent
     $StageReleasePath = Join-Path (Join-Path $BuildRoot $Script:BuildEnv.ScratchFolder) $Script:BuildEnv.BaseReleaseFolder
-    $Analysis = Invoke-ScriptAnalyzer -Path $StageReleasePath -Settings $Script:BuildEnv.OptionAnalyzeCodeSettings
-    if ($($Analysis.SuggestedCorrections.Count)) {
+    $Analysis = Invoke-ScriptAnalyzer -Path $StageReleasePath -Settings (Join-Path $BuildRoot "PSScriptAnalyzerSettings.psd1")
+    if ($Analysis.Count) {
         Write-Description White "Note that this was from the script analysis run against $StageReleasePath" -level 2
-        Write-Description White 'The following errors came up in the script analysis:' -level 2
+        Write-Description Red "$($Analysis.Count) linting errors or warnings were found:" -level 2
         $Analysis | Format-Table -AutoSize
-        Write-Error "$($Analysis.SuggestedCorrections.Count) linting errors or warnings were found. The build cannot continue." -ErrorAction Stop
+        Write-Error "$($Analysis.Count) linting errors or warnings were found. The build cannot continue." -ErrorAction Stop
     }
 }
 
 # Synopsis: Run PSScriptAnalyzer against the public source files.
 task AnalyzePublic {
     Write-Description White "Analyzing the public source files with ScriptAnalyzer." -accent
-    $Analysis = Invoke-ScriptAnalyzer -Path (Join-Path $BuildRoot $Script:BuildEnv.PublicFunctionSource) -Settings $Script:BuildEnv.OptionAnalyzeCodeSettings
-    if ($($Analysis.SuggestedCorrections.Count)) {
+    $Analysis = Invoke-ScriptAnalyzer -Path (Join-Path $BuildRoot $Script:BuildEnv.PublicFunctionSource) -Settings (Join-Path $BuildRoot "PSScriptAnalyzerSettings.psd1")
+    if ($Analysis.Count) {
         Write-Description White "Note that this was from the script analysis run against $($Script:BuildEnv.PublicFunctionSource)" -level 2
-        Write-Description Red "$($Analysis.SuggestedCorrections.Count) linting errors, warnings or suggestions were found:" -level 2
+        Write-Description Red "$($Analysis.Count) linting errors or warnings were found:" -level 2
         $Analysis | Format-Table -AutoSize
     }
 }
@@ -878,7 +878,7 @@ task GithubPush VersionCheck, {
 task . Configure, CodeHealthReport, Clean, PrepareStage, GetPublicFunctions, SanitizeCode, CreateHelp, CreateModulePSM1, CreateModuleManifest, AnalyzeModuleRelease, PushVersionRelease, PushCurrentRelease, CreateProjectHelp, PostBuildTasks, BuildSessionCleanup
 
 # Synopsis: Install and test load the module.
-task InstallAndTestModule LoadBuildTools, InstallModule, TestInstalledModule
+task InstallAndTestModule InstallModule, TestInstalledModule
 
 # Synopsis: Build, Install, and Test the module
 task BuildInstallAndTestModule Configure, CodeHealthReport, Clean, PrepareStage, GetPublicFunctions, SanitizeCode, CreateHelp, CreateModulePSM1, CreateModuleManifest, AnalyzeModuleRelease, PushVersionRelease, PushCurrentRelease, CreateProjectHelp, InstallModule, TestInstalledModule, PostBuildTasks, BuildSessionCleanup
@@ -886,5 +886,5 @@ task BuildInstallAndTestModule Configure, CodeHealthReport, Clean, PrepareStage,
 # Synopsis: Build, Install, Test, and Publish the module
 task BuildInstallTestAndPublishModule Configure, CodeHealthReport, Clean, PrepareStage, GetPublicFunctions, SanitizeCode, CreateHelp, CreateModulePSM1, CreateModuleManifest, AnalyzeModuleRelease, PushVersionRelease, PushCurrentRelease, CreateProjectHelp, InstallModule, TestInstalledModule, PublishPSGallery, PostBuildTasks, BuildSessionCleanup
 
-# Synopsis: Insert Comment Based Help where it doesn't already exist (output to scratch directory)
+# Synopsis: Instert Comment Based Help where it doesn't already exist (output to scratch directory)
 task InsertMissingCBH Configure, Clean, UpdateCBHtoScratch, BuildSessionCleanup

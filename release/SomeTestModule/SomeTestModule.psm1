@@ -159,7 +159,7 @@ function Get-CallerPreference {
     <#
     .EXTERNALHELP SomeTestModule-help.xml
     .LINK
-        https://github.com/justin-p/SomeTestModule/tree/master/release/0.0.4/docs/Functions/Get-CallerPreference.md
+        https://github.com/justin-p/SomeTestModule/tree/master/release/0.0.1/docs/Functions/Get-CallerPreference.md
     #>
 
     [CmdletBinding(DefaultParameterSetName = 'AllVariables')]
@@ -322,7 +322,9 @@ $null = Register-EngineEvent -SourceIdentifier ( [System.Management.Automation.P
 }
 
 # Use this in your scripts to check if the function is being called from your module or independantly.
+# Call it immediately to avoid PSScriptAnalyzer 'PSUseDeclaredVarsMoreThanAssignments'
 $ThisModuleLoaded = $true
+$ThisModuleLoaded
 
 # Non-function exported public module members might go here.
 #Export-ModuleMember -Variable SomeVariable -Function  *
