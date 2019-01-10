@@ -11,7 +11,7 @@ Locale: en-US
 SomeTestModule
 
 ## SomeTestModule Cmdlets
-### [Get-CallerPreference](Get-CallerPreference.md)
-Fetches "Preference" variable values from the caller's scope.
+### [Write-SomeTestModule](Write-SomeTestModule.md)
+Simple sample function.
 
 
