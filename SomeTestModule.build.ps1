@@ -158,9 +158,8 @@ task CodeHealthReport -if {$Script:BuildEnv.OptionCodeHealthReport} ValidateRequ
 
     Write-Description White 'Creating a code health report of your public functions' -level 2
     $CodeHealthScanPathPublic = Join-Path $BuildRoot $Script:BuildEnv.PublicFunctionSource
-    $CodeHealthTestsPathPublic = Join-Path $BuildRoot '.\tests\unit\public'
     $CodeHealthReportPublic = Join-Path $BuildReportsFolder 'CodeHealthReport-Public.html'
-    Invoke-PSCodeHealth -Path $CodeHealthScanPathPublic -TestsPath $CodeHealthTestsPathPublic -HtmlReportPath $CodeHealthReportPublic
+    Invoke-PSCodeHealth -Path $CodeHealthScanPathPublic -HtmlReportPath $CodeHealthReportPublic
 
     if (Test-Path $CodeHealthReportPublic) {
         (Get-Content -Path $CodeHealthReportPublic -raw) -replace [regex]::escape((Resolve-Path $CodeHealthScanPathPublic)), $Script:BuildEnv.PublicFunctionSource | Out-File -FilePath $CodeHealthReportPublic -Encoding $Script:BuildEnv.Encoding -Force
@@ -169,8 +168,7 @@ task CodeHealthReport -if {$Script:BuildEnv.OptionCodeHealthReport} ValidateRequ
     Write-Description White 'Creating a code health report of your private functions' -level 2
     $CodeHealthScanPathPrivate = Join-Path $BuildRoot $Script:BuildEnv.PrivateFunctionSource
     $CodeHealthReportPrivate = Join-Path $BuildReportsFolder 'CodeHealthReport-Private.html'
-    $CodeHealthTestsPathPrivate = Join-Path $BuildRoot '.\tests\unit\public'
-    Invoke-PSCodeHealth -Path $CodeHealthScanPathPrivate -TestsPath $CodeHealthTestsPathPrivate -HtmlReportPath $CodeHealthReportPrivate
+    Invoke-PSCodeHealth -Path $CodeHealthScanPathPrivate -HtmlReportPath $CodeHealthReportPrivate
 
     if (Test-Path $CodeHealthReportPrivate) {
         (Get-Content -Path $CodeHealthReportPrivate -raw) -replace [regex]::escape((Resolve-Path $CodeHealthScanPathPrivate)), $Script:BuildEnv.PrivateFunctionSource | Out-File -FilePath $CodeHealthReportPrivate -Encoding $Script:BuildEnv.Encoding -Force
@@ -889,4 +887,4 @@ task BuildInstallAndTestModule Configure, CodeHealthReport, Clean, PrepareStage,
 task BuildInstallTestAndPublishModule Configure, CodeHealthReport, Clean, PrepareStage, GetPublicFunctions, SanitizeCode, CreateHelp, CreateModulePSM1, CreateModuleManifest, AnalyzeModuleRelease, PushVersionRelease, PushCurrentRelease, CreateProjectHelp, InstallModule, TestInstalledModule, PublishPSGallery, PostBuildTasks, BuildSessionCleanup
 
 # Synopsis: Instert Comment Based Help where it doesn't already exist (output to scratch directory)
-task InsertMissingCBH Configure, Clean, UpdateCBHtoScratch, BuildSessionCleanup
+task AddMissingCBH Configure, Clean, UpdateCBHtoScratch, BuildSessionCleanup
