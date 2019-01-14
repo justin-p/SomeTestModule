@@ -6,23 +6,48 @@
       <command:verb>Write</command:verb>
       <command:noun>SomeTestModule</command:noun>
       <maml:description>
-        <maml:para>Simple sample function.</maml:para>
+        <maml:para>A dummy test function</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Simple sample function. Only Reason this is a thing is to test builds.</maml:para>
+      <maml:para>A dummy test function Displays a simply string as output</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Write-SomeTestModule</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>a</maml:name>
+          <maml:Description>
+            <maml:para>a dummy param</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+          <dev:type>
+            <maml:name>Object</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
-    <command:parameters />
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>a</maml:name>
+        <maml:Description>
+          <maml:para>a dummy param</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+        <dev:type>
+          <maml:name>Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
     <command:inputTypes />
     <command:returnValues />
     <maml:alertSet>
       <maml:alert>
-        <maml:para>Author: Justin Perdok</maml:para>
+        <maml:para></maml:para>
       </maml:alert>
     </maml:alertSet>
     <command:examples>
@@ -34,11 +59,6 @@
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks>
-      <maml:navigationLink>
-        <maml:linkText>https://github.com/justin-p/SomeTestModule</maml:linkText>
-        <maml:uri>https://github.com/justin-p/SomeTestModule</maml:uri>
-      </maml:navigationLink>
-    </command:relatedLinks>
+    <command:relatedLinks />
   </command:command>
 </helpItems>

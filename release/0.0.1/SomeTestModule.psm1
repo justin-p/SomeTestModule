@@ -155,15 +155,15 @@ function Get-CallerPreference {
 
 ## PUBLIC MODULE FUNCTIONS AND DATA ##
 
-function Write-SomeTestModule {
-    <#
+Function Write-SomeTestModule {
+<#
     .EXTERNALHELP SomeTestModule-help.xml
     .LINK
-        https://github.com/justin-p/SomeTestModule/tree/master/release/0.0.1/docs/Functions/Write-SomeTestModule.md
+        https://github.com/justin-p/SomeTestModule//tree/master/release/0.0.1/docs/Functions/Write-SomeTestModule.md
     #>
-
     [CmdletBinding()]
     param(
+		$a
     )
     begin {
         if ($script:ThisModuleLoaded -eq $true) {
@@ -178,8 +178,8 @@ function Write-SomeTestModule {
     end {
         Write-Verbose "$($FunctionName): End."
     }
-}
 
+}
 
 
 ## Post-Load Module code ##
