@@ -1,3 +1,5 @@
+![Appveyor build status](https://ci.appveyor.com/api/projects/status/yntgbqpc2gm7dfbc?svg=true)
+
 # SomeTestModule
 
 SomeTestModule
@@ -5,13 +7,6 @@ SomeTestModule
 ## Description
 
 SomeTestModule
-
-## Build Status
-[1]: https://ci.appveyor.com/api/projects/status/yntgbqpc2gm7dfbc?svg=true
-
-| Master |
-| :---- |
-| ![Appveyor build status][1]
 
 ## Introduction
 
