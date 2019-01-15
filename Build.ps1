@@ -62,7 +62,6 @@ switch ($psCmdlet.ParameterSetName) {
         # If no parameters were specified or the build action was manually specified then kick off a standard build
         if (($psboundparameters.count -eq 0) -or ($BuildModule)) {
             try {
-                Write-Error 'TEST: This should fail.' -ErrorAction Stop
                 Invoke-Build -ErrorAction Stop
             }
             catch {
