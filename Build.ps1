@@ -36,75 +36,58 @@ function PrerequisitesLoaded {
         return $false
     }
 }
-
-function CleanUp {
-    try {
-        Write-Output ''
-        Write-Output 'Attempting to clean up the session (loaded modules and such)...'
-        Invoke-Build -Task BuildSessionCleanup
-        Remove-Module InvokeBuild
-    }
-    catch {}
-}
-
 if (-not (PrerequisitesLoaded)) {
     throw 'Unable to load InvokeBuild!'
 }
-
 switch ($psCmdlet.ParameterSetName) {
     'CBH' {
         if ($AddCBH) {
             try {
-                Invoke-Build -Task AddMissingCBH
+                Invoke-Build -Task AddMissingCBH -ErrorAction stop
             }
             catch {
-                throw
+                $PSCmdlet.ThrowTerminatingError($PSItem)
             }
         }
-
-        CleanUp
     }
     'Build' {
         if ($NewVersion -ne $null) {
             try {
-                Invoke-Build -Task UpdateVersion -NewVersion $NewVersion -ReleaseNotes $ReleaseNotes
+                Invoke-Build -Task UpdateVersion -NewVersion $NewVersion -ReleaseNotes $ReleaseNotes -ErrorAction Stop
             }
             catch {
-                throw $_
+                $PSCmdlet.ThrowTerminatingError($PSItem)
             }
         }
         # If no parameters were specified or the build action was manually specified then kick off a standard build
         if (($psboundparameters.count -eq 0) -or ($BuildModule)) {
             try {
-                Invoke-Build
+                Invoke-Build -ErrorAction Stop
             }
             catch {
                 Write-Output 'Build Failed with the following error:'
-                Write-Output $_
+                $PSCmdlet.ThrowTerminatingError($PSItem)
             }
         }
-
         # Install and test the module?
         if ($InstallAndTestModule) {
             try {
-                Invoke-Build -Task InstallAndTestModule
+                Invoke-Build -Task InstallAndTestModule -ErrorAction Stop
             }
             catch {
                 Write-Output 'Install and test of module failed:'
-                Write-Output $_
+                $PSCmdlet.ThrowTerminatingError($PSItem)
             }
         }
-
         # Upload to gallery?
         if ($UploadPSGallery) {
             try {
-                Invoke-Build -Task PublishPSGallery
+                Invoke-Build -Task PublishPSGallery -ErrorAction Stop
             }
             catch {
-                throw 'Unable to upload project to the PowerShell Gallery!'
+                Write-Output 'Unable to upload project to the PowerShell Gallery!'
+                $PSCmdlet.ThrowTerminatingError($PSItem)
             }
         }
-
-        CleanUp
     }
 }
