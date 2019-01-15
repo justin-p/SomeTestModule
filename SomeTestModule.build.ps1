@@ -56,7 +56,7 @@ task LoadRequiredModules {
     Write-Description White 'Loading all required modules for the build framework' -accent
 
     # These are required for a full build process and will be automatically installed if they aren't available
-    $Script:RequiredModules = @('PlatyPS')
+    $Script:RequiredModules = @('PlatyPS','Pester')
 
     # Some optional modules
     if ($Script:BuildEnv.OptionAnalyzeCode) {
