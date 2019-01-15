@@ -1,34 +1,30 @@
 Function Write-SomeTestModule {
     <#
     .SYNOPSIS
-    TBD
+        A dummy test function
     .DESCRIPTION
-    TBD
+        A dummy test function Displays a simply string as output
     .PARAMETER a
-    a explanation
-
-
-
+        a dummy param
     .EXAMPLE
-    TBD
+        Write-SomeTestModule
     #>
-    [CmdletBinding()]
-    param($a)
-    #begin
-    #{
-    #    if ($script:ThisModuleLoaded -eq $true)
-    #    {
-    #        Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
-    #    }
-    #    $FunctionName = $MyInvocation.MyCommand.Name
-    #    Write-Verbose "$($FunctionName): Begin."
-    #}
-    #process
-    #{
-        Write-Output 'Yerp. This is a function.'
-    #}
-    #end
-    #{
-        Write-Verbose "$($FunctionName): End."
-    #}
-}
+        [CmdletBinding()]
+        param(
+            $a
+        )
+        begin {
+            if ($script:ThisModuleLoaded -eq $true) {
+                Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+            }
+            $FunctionName = $MyInvocation.MyCommand.Name
+            Write-Verbose "$($FunctionName): Begin."
+        }
+        process {
+            Write-Output 'Yerp. This is a function.'
+        }
+        end {
+            Write-Verbose "$($FunctionName): End."
+        }
+
+    }
