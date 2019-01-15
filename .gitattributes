@@ -1,11 +1,6 @@
 #Default all files it determins as text, normalize them.
 * text=auto eol=lf
 
-# Ensure PS files use UTF-8
-*.ps1   encoding=UTF-8
-*.psd1  encoding=UTF-8
-*.psm1  encoding=UTF-8
-
 # These files are text and should be normalized (convert crlf => lf)
 # Git Files
 .gitattributes text eol=lf
@@ -20,8 +15,8 @@
 *.h       text eol=crlf
 *.md      text eol=crlf
 *.msbuild text eol=crlf
-*.ps1     text eol=crlf
-*.psm1     text eol=crlf
+*.ps1     text eol=crlf encoding=UTF-8
+*.psm1     text eol=crlf encoding=UTF-8
 *.sdf     binary
 *.sln     text eol=crlf
 *.tt      text eol=crlf
