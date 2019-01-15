@@ -2,6 +2,12 @@
 
 SomeTestModule
 
+[1]: https://ci.appveyor.com/api/projects/status/yntgbqpc2gm7dfbc?svg=true
+
+| Build Status Master |
+| :---- |
+| ![Appveyor build status][1]
+
 ## Description
 
 SomeTestModule
