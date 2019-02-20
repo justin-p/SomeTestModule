@@ -1,6 +1,6 @@
 ![Appveyor build status](https://ci.appveyor.com/api/projects/status/yntgbqpc2gm7dfbc?svg=true)
 
-![Appveyor url](https://ci.appveyor.com/project/justin-p/sometestmodule/)
+[Appveyor url](https://ci.appveyor.com/project/justin-p/sometestmodule/)
 
 # SomeTestModule
 
