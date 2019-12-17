@@ -36,7 +36,7 @@ if ((Get-Variable 'BuildEnv' -ErrorAction:SilentlyContinue) -eq $null) {
 
         # If you want to prescan and fail a build upon finding any proprietary strings
         # enable this option and define some strings.
-        OptionSanitizeSensitiveTerms = $False
+        OptionSanitizeSensitiveTerms = $True
         OptionSensitiveTerms = @($env:username, $env:userdomain, $env:userdnsdomain) | Where {$null -ne $_}
         OptionSensitiveTermsInitialized = $false
 
@@ -48,7 +48,7 @@ if ((Get-Variable 'BuildEnv' -ErrorAction:SilentlyContinue) -eq $null) {
         AdditionalModulePaths = @('plugins')
 
         # Generate a yml file in the root folder of this project for readthedocs.org integration
-        OptionGenerateReadTheDocs = $False
+        OptionGenerateReadTheDocs = $True
         # Most of the following options you probably don't need to change
         BaseSourceFolder = 'src'        # Base source path
         PublicFunctionSource = "src\public"         # Public functions (to be exported by file name as the function name)
