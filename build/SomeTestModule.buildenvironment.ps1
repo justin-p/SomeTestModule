@@ -26,7 +26,7 @@ if ((Get-Variable 'BuildEnv' -ErrorAction:SilentlyContinue) -eq $null) {
 
         # Options - These affect how your build will be run.
         OptionAnalyzeCode = $True
-        OptionCodeHealthReport = $True
+        OptionCodeHealthReport = $False
         OptionCombineFiles = $TRUE
         OptionTranscriptEnabled = $false
         OptionTranscriptLogFile = 'BuildTranscript.Log'
