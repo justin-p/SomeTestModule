@@ -51,37 +51,21 @@ task ValidateRequirements {
     assert ($PSVersionTable.PSVersion.Major.ToString() -eq '5') 'Powershell 5 is required for this build to function properly (you can comment this assert out if you are able to work around this requirement)'
 }
 
-#Synopsis: Load required modules if available. Otherwise try to install, then load it.
+#Synopsis: Load required build modules using PSDepend
 task LoadRequiredModules {
     Write-Description White 'Loading all required modules for the build framework' -accent
 
-    # These are required for a full build process and will be automatically installed if they aren't available
-    $Script:RequiredModules = @('PlatyPS')
+    if ((Get-Module PSDepend -ListAvailable) -eq $null) {
+        Write-Description White "Installing PSDepend Module" -Level 2
+        $null = Install-Module PSDepend -Scope:CurrentUser
+    }
 
-    # Some optional modules
-    if ($Script:BuildEnv.OptionAnalyzeCode) {
-        $Script:RequiredModules += 'PSScriptAnalyzer'
-    }
-    if ($Script:BuildEnv.OptionGenerateReadTheDocs) {
-        $Script:RequiredModules += 'Powershell-YAML'
-    }
-    if ($Script:BuildEnv.OptionCodeHealthReport) {
-        $Script:RequiredModules += 'PSCodeHealth'
-    }
-    $Script:RequiredModules | Foreach-Object {
-        if ((get-module $_ -ListAvailable) -eq $null) {
-            Write-Description White "Installing $($_) Module" -Level 2
-            $null = Install-Module $_ -Scope:CurrentUser
-        }
-        if (get-module $_ -ListAvailable) {
-            Write-Description White "Importing $($_) Module" -Level 2
-            Import-Module $_ -Force
-        }
-        else {
-            throw 'How did you even get here?'
-        }
-    }
+    $PSDependFolder = $(Join-Path $Script:BuildEnv.BuildToolFolder 'PSDepend')
+    $PSDependBuildFile = $(Join-Path $PSDependFolder 'build.depend.psd1')
+    Invoke-PSDepend -Path $PSDependBuildFile -Force
+    Invoke-PSDepend -Path $PSDependBuildFile -Import -Force
 }
+
 
 #Synopsis: Load dot sourced functions into this build session
 task LoadBuildTools {
@@ -153,7 +137,7 @@ task CodeHealthReport -if {$Script:BuildEnv.OptionCodeHealthReport} ValidateRequ
     Write-Description White "Creating a prebuild code health report of your public functions to $($Script:BuildEnv.BuildReportsFolder)" -accent
 
     if (-not (Test-Path $BuildReportsFolder)) {
-        New-Item -Path $BuildReportsFolder -ItemType:Directory
+        [void](New-Item -Path $BuildReportsFolder -ItemType:Directory)
     }
 
     Write-Description White 'Creating a code health report of your public functions' -level 2
@@ -831,12 +815,6 @@ task BuildSessionCleanup LoadRequiredModules, {
     Write-Description White 'Cleaning up the build session' -accent
 
     $BuildToolPath = Join-Path $BuildRoot $Script:BuildEnv.BuildToolFolder
-    # Clean up loaded modules if they are loaded
-    Write-Description White "Removing modules" -Level 2
-    $Script:RequiredModules | Foreach-Object {
-        Write-Description White "Removing $($_) module (if loaded)." -Level 3
-        Remove-Module $_ -Erroraction Ignore
-    }
 
     Write-Description White "Removing $($Script:BuildEnv.ModuleToBuild) module (if loaded)." -Level 3
     Remove-Module $Script:BuildEnv.ModuleToBuild -Erroraction Ignore
