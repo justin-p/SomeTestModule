@@ -819,7 +819,7 @@ task BuildSessionCleanup {
 
     $Script:PSDependBuildModules | Foreach-Object {
         Write-Description White "Removing $($_.DependencyName) module (if loaded)." -Level 3
-        Remove-Module $_ -Erroraction Ignore
+        Remove-Module $_ -Erroraction Ignore -Force
     }
 
     if ($Script:BuildEnv.OptionTranscriptEnabled) {
