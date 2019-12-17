@@ -510,8 +510,7 @@ task CreateMarkdownHelp GetPublicFunctions, {
      (PlatyPS won't know what this is as our module in memory is loaded from the psm1 file not the actual manifest file)
     #>
     $ModulePageFileContent = Get-Content -raw $ModulePage
-    $ModulePageFileContent = $ModulePageFileContent -replace '{{ Fill in the Description }}', $Script:Manifest.Description `
-                                  -replace '00000000-0000-0000-0000-000000000000', ($Script:Manifest.Guid).ToString()
+    $ModulePageFileContent = $ModulePageFileContent -replace '{{ Fill in the Description }}', $Script:Manifest.Description -replace '00000000-0000-0000-0000-000000000000', ($Script:Manifest.Guid).ToString()
     $ModulePageFileContent | Out-File $ModulePage -Force -Encoding $Script:BuildEnv.Encoding
     $MissingDocumentation = Select-String -Path "$($StageReleasePath)\docs\*.md" -Pattern "({{.*}})"
 
@@ -530,7 +529,6 @@ task CreateMarkdownHelp GetPublicFunctions, {
         throw 'Missing documentation. Please review and rebuild.'
     }
 }
-
 
 # Synopsis: Build the markdown help files with PlatyPS
 task CreateExternalHelp {
