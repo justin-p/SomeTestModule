@@ -1,5 +1,6 @@
 Function Test-ValueLength {
     [CmdletBinding(SupportsShouldProcess=$true)]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSShouldProcess", "", Justification="Just an Test Module")]
     Param (
         [Parameter(Mandatory=$true)]
         [ValidateNotNullOrEmpty()]

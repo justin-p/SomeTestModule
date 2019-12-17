@@ -36,57 +36,70 @@ function PrerequisitesLoaded {
         return $false
     }
 }
+
+function CleanUp {
+    try {
+        Write-Output ''
+        Write-Output 'Attempting to clean up the session (loaded modules and such)...'
+        Invoke-Build -Task BuildSessionCleanup
+        Remove-Module InvokeBuild
+    }
+    catch {}
+}
+
 if (-not (PrerequisitesLoaded)) {
     throw 'Unable to load InvokeBuild!'
 }
+
 switch ($psCmdlet.ParameterSetName) {
     'CBH' {
         if ($AddCBH) {
             try {
-                Invoke-Build -Task AddMissingCBH -ErrorAction stop
+                Invoke-Build -Task AddMissingCBH
             }
             catch {
-                $PSCmdlet.ThrowTerminatingError($PSItem)
+                throw
             }
         }
     }
     'Build' {
         if ($NewVersion -ne $null) {
             try {
-                Invoke-Build -Task UpdateVersion -NewVersion $NewVersion -ReleaseNotes $ReleaseNotes -ErrorAction Stop
+                Invoke-Build -Task UpdateVersion -NewVersion $NewVersion -ReleaseNotes $ReleaseNotes
             }
             catch {
-                $PSCmdlet.ThrowTerminatingError($PSItem)
+                throw $_
             }
         }
         # If no parameters were specified or the build action was manually specified then kick off a standard build
         if (($psboundparameters.count -eq 0) -or ($BuildModule)) {
             try {
-                Invoke-Build -ErrorAction Stop
+                Invoke-Build
             }
             catch {
                 Write-Output 'Build Failed with the following error:'
-                $PSCmdlet.ThrowTerminatingError($PSItem)
+                Write-Output $_
             }
         }
+
         # Install and test the module?
         if ($InstallAndTestModule) {
             try {
-                Invoke-Build -Task InstallAndTestModule -ErrorAction Stop
+                Invoke-Build -Task InstallAndTestModule
             }
             catch {
                 Write-Output 'Install and test of module failed:'
-                $PSCmdlet.ThrowTerminatingError($PSItem)
+                Write-Output $_
             }
         }
+
         # Upload to gallery?
         if ($UploadPSGallery) {
             try {
-                Invoke-Build -Task PublishPSGallery -ErrorAction Stop
+                Invoke-Build -Task PublishPSGallery
             }
             catch {
-                Write-Output 'Unable to upload project to the PowerShell Gallery!'
-                $PSCmdlet.ThrowTerminatingError($PSItem)
+                throw 'Unable to upload project to the PowerShell Gallery!'
             }
         }
     }

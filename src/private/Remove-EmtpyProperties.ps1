@@ -1,5 +1,7 @@
 Function Remove-EmtpyProperties {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "", Justification="Just an Test Module")]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "", Justification="Just an Test Module")]
     Param(
         [Parameter(ValueFromPipeline=$True)]
         $InputObject

@@ -1,5 +1,6 @@
 Function Sync-DNObjectOnAllDomainControllers  {
     [CmdletBinding(SupportsShouldProcess=$true)]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "", Justification="Just an Test Module")]
     Param (
         $InputObject,
         $SourceDomainController = $((Get-DomainController).dnshostname[0])

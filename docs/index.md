@@ -1,7 +1,7 @@
 # SomeTestModule
 SomeTestModule
 
-Project Site: [https://github.com/justin-p/SomeTestModule/](https://github.com/justin-p/SomeTestModule/)
+Project Site: [https://github.com/justin-p/SomeTestModule](https://github.com/justin-p/SomeTestModule)
 
 ## What is SomeTestModule?
 SomeTestModule
@@ -28,7 +28,7 @@ Install-Module -Name SomeTestModule -Scope CurrentUser
 [Notes on contributing to this project](Contributing.md)
 
 ## Change Logs
-[Change notes for each release](ChangeLogs.md)
+[Change notes for each release](ChangeLog.md)
 
 ## Acknowledgements
 [Other projects or sources of inspiration](Acknowledgements.md)
