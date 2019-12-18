@@ -59,7 +59,7 @@ task LoadRequiredModules {
         $null = Install-Module PSDepend -Scope:CurrentUser
     }
 
-    $PSDependFolder = $(Join-Path $Script:BuildEnv.BuildToolFolder 'PSDepend')
+    $PSDependFolder = $(Join-Path $Script:BuildEnv.BuildToolFolder 'dependencies\PSDepend')
     $PSDependBuildFile = $(Join-Path $PSDependFolder 'build.depend.psd1')
     Invoke-PSDepend -Path $PSDependBuildFile -Force
     $Script:PSDependBuildModules = Invoke-PSDepend -Path $PSDependBuildFile -Test | Select Dependency*
@@ -147,7 +147,7 @@ task CodeHealthReport -if {$Script:BuildEnv.OptionCodeHealthReport} ValidateRequ
 }
 
 #Synopsis: Validate script requirements are met, load required modules, load project manifest and module, and load additional build tools.
-task Configure ValidateRequirements, PreBuildTasks, LoadRequiredModules, LoadModuleManifest, LoadModule, VersionCheck, LoadRequiredModules, {
+task Configure ValidateRequirements, PreBuildTasks, LoadRequiredModules, LoadModuleManifest, LoadModule, VersionCheck, {
     # If we made it this far then we are configured!
     Write-Description White 'Configuring build environment' -accent
 }
