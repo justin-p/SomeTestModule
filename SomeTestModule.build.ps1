@@ -243,7 +243,7 @@ task RunPSScriptAnalyzeOnPublicSrcFunctions {
 #endregion
 
 #region Tests
-task RunAllTests, LoadRequiredModules {
+task RunAllTests LoadRequiredModules, {
 
     Write-Description White 'Running all tests with Pester' -accent
     $ENV:BuildRoot = $BuildRoot
