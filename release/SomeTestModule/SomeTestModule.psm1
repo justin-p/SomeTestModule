@@ -484,7 +484,7 @@ Function Write-SomeTestModule {
     <#
         .EXTERNALHELP SomeTestModule-help.xml
         .LINK
-            https://github.com/justin-p/sometestmodule/tree/master/release/0.0.1/docs/Functions/Write-SomeTestModule.md
+            https://github.com/justin-p/SomeTestModule/tree/master/release/0.0.1/docs/Functions/Write-SomeTestModule.md
         #>
     [CmdletBinding()]
     param(

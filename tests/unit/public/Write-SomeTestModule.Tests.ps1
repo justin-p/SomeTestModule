@@ -7,7 +7,7 @@ $here = $here -replace 'tests\\unit', 'src'
 
 . "$here\$sut"
 
-Describe "Testing Write-SomeTestModule" {
+Describe "Testing Write-SomeTestModule" -Tags @('UnitTest') {
     it "Should return a specific string: (Yerp. This is a function.)" {
         $result = Write-SomeTestModule
         $result | Should -Be "Yerp. This is a function."

@@ -10,7 +10,7 @@ if(-not $projectRoot) {
     $projectRoot = $PSScriptRoot
 }
 
-Describe 'Text files formatting' {
+Describe 'Text files formatting' -Tags @('MetaTest') {
 
     $allTextFiles = Get-TextFilesList $projectRoot
 

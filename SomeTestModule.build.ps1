@@ -243,9 +243,8 @@ task RunPSScriptAnalyzeOnPublicSrcFunctions {
 #endregion
 
 #region Tests
-task RunAllTests LoadRequiredModules, {
-
-    Write-Description White 'Running all tests with Pester' -accent
+task RunMetaTests LoadRequiredModules, {
+    Write-Description White 'Running meta tests with Pester' -accent
     $ENV:BuildRoot = $BuildRoot
     $invokePesterParams = @{
         Strict = $true
@@ -253,7 +252,21 @@ task RunAllTests LoadRequiredModules, {
         Verbose = $false
         EnableExit = $false
     }
-    $testResults = Invoke-Pester $(Join-Path $BuildRoot 'Tests') @invokePesterParams
+    $testResults = Invoke-Pester -Tag 'MetaTest' $(Join-Path $BuildRoot 'Tests') @invokePesterParams
+    $numberFails = $testResults.FailedCount
+    assert($numberFails -eq 0) ('Failed "{0}" meta tests.' -f $numberFails)
+}
+
+task RunUnitTests LoadRequiredModules, {
+    Write-Description White 'Running meta tests with Pester' -accent
+    $ENV:BuildRoot = $BuildRoot
+    $invokePesterParams = @{
+        Strict = $true
+        PassThru = $true
+        Verbose = $false
+        EnableExit = $false
+    }
+    $testResults = Invoke-Pester -tag 'UnitTest' $(Join-Path $BuildRoot 'Tests') @invokePesterParams
     $numberFails = $testResults.FailedCount
     assert($numberFails -eq 0) ('Failed "{0}" unit tests.' -f $numberFails)
 }
@@ -844,6 +857,10 @@ task BuildSessionCleanup CleanScratchDirectory, {
 #endregion
 
 #region Main tasks
+# Synopsis: Run all tests
+task Tests RunMetaTests, RunUnitTests, {
+
+}
 # Synopsis: Build the module
 task Build Configure, CodeHealthReport, PrepareStage, GetPublicFunctions, SanitizeCode, CreateHelp, CreateModulePSM1, CreateModuleManifest, AnalyzeModuleRelease, PushVersionRelease, PushCurrentRelease, CreateProjectHelp, PostBuildTasks, BuildSessionCleanup, {
 
@@ -865,5 +882,5 @@ task AddMissingCBH Configure, CleanScratchDirectory, InsertCBHInPublicFunctions,
 }
 
 # Synopsis: Default task when running Invoke-Build
-task . RunAllTests, Build
+task . Tests, Build
 #endregion
