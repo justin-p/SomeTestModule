@@ -45,6 +45,7 @@ if ($Script:BuildEnv.OptionTranscriptEnabled) {
     Start-Transcript -Path $TranscriptLog -Append -WarningAction:SilentlyContinue
 }
 
+#$Script:BuildRoot = $BuildRoot
 #region Configure
 #Synopsis: Validate system requirements are met
 task ValidateRequirements {
@@ -238,6 +239,23 @@ task RunPSScriptAnalyzeOnPublicSrcFunctions {
         Write-Description Red "$($Analysis.Count) linting errors or warnings were found:" -level 2
         $Analysis | Format-Table -AutoSize
     }
+}
+#endregion
+
+#region Tests
+task RunAllTests {
+
+    Write-Description White 'Running all tests with Pester' -accent
+    $ENV:BuildRoot = $BuildRoot
+    $invokePesterParams = @{
+        Strict = $true
+        PassThru = $true
+        Verbose = $false
+        EnableExit = $false
+    }
+    $testResults = Invoke-Pester $(Join-Path $BuildRoot 'Tests') @invokePesterParams
+    $numberFails = $testResults.FailedCount
+    assert($numberFails -eq 0) ('Failed "{0}" unit tests.' -f $numberFails)
 }
 #endregion
 
@@ -847,5 +865,5 @@ task AddMissingCBH Configure, CleanScratchDirectory, InsertCBHInPublicFunctions,
 }
 
 # Synopsis: Default task when running Invoke-Build
-task . Build
+task . RunAllTests, Build
 #endregion
