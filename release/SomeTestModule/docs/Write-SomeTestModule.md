@@ -8,7 +8,7 @@ schema: 2.0.0
 # Write-SomeTestModule
 
 ## SYNOPSIS
-A dummy test function
+TBD
 
 ## SYNTAX
 
@@ -17,19 +17,19 @@ Write-SomeTestModule [[-a] <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-A dummy test function Displays a simply string as output
+TBD
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Write-SomeTestModule
+TBD
 ```
 
 ## PARAMETERS
 
 ### -a
-a dummy param
+a explanation
 
 ```yaml
 Type: Object

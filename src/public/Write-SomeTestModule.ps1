@@ -1,13 +1,13 @@
 Function Write-SomeTestModule {
     <#
     .SYNOPSIS
-        A dummy test function
+    TBD
     .DESCRIPTION
-        A dummy test function Displays a simply string as output
+    TBD
     .PARAMETER a
-        a dummy param
+    a explanation
     .EXAMPLE
-        Write-SomeTestModule
+    TBD
     #>
     [CmdletBinding()]
     param(
@@ -26,4 +26,5 @@ Function Write-SomeTestModule {
     end {
         Write-Verbose "$($FunctionName): End."
     }
+
 }

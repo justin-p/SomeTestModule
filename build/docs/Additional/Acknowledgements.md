@@ -1,6 +1,6 @@
 # SomeTestModule Acknowledgements
 
-Project Site: [https://github.com/justin-p/SomeTestModule](https://github.com/justin-p/SomeTestModule)
+Project Site: [https://github.com/justin-p/sometestmodule](https://github.com/justin-p/sometestmodule)
 
 This project owes some acknowledgements to other projects. Here are some other authors or projects which have made this project possible. If you believe you or a project should be included in this list please let us know.
 

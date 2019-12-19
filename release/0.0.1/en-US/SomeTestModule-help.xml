@@ -6,11 +6,11 @@
       <command:verb>Write</command:verb>
       <command:noun>SomeTestModule</command:noun>
       <maml:description>
-        <maml:para>A dummy test function</maml:para>
+        <maml:para>TBD</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>A dummy test function Displays a simply string as output</maml:para>
+      <maml:para>TBD</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -18,7 +18,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>a</maml:name>
           <maml:Description>
-            <maml:para>a dummy param</maml:para>
+            <maml:para>a explanation</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
           <dev:type>
@@ -33,7 +33,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>a</maml:name>
         <maml:Description>
-          <maml:para>a dummy param</maml:para>
+          <maml:para>a explanation</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
         <dev:type>
@@ -53,7 +53,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- EXAMPLE 1 --------------------------</maml:title>
-        <dev:code>Write-SomeTestModule</dev:code>
+        <dev:code>TBD</dev:code>
         <dev:remarks>
           <maml:para></maml:para>
         </dev:remarks>
