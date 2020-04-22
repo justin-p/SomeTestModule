@@ -14,3 +14,4 @@ build: false
 # Kick off the CI/CD pipeline
 test_script:
   - ps: . .\Build.ps1 -Test
+  - ps: . .\Build.ps1 -BuildModule
