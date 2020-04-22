@@ -12,7 +12,7 @@ skip_commits:
 build: false
 
 # Kick off the CI/CD pipeline
-test_script:
+before_build:
   - ps: . .\Build.ps1 -Test
 
 build_script:
