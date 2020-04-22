@@ -898,5 +898,5 @@ task AddMissingCBH Configure, CleanScratchDirectory, InsertCBHInPublicFunctions,
 }
 
 # Synopsis: Default task when running Invoke-Build
-task . Tests, Build
+task . Build
 #endregion
