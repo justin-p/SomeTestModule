@@ -12,5 +12,5 @@ skip_commits:
 build: false
 
 # Kick off the CI/CD pipeline
-before_build:
+test_script:
   - ps: . .\Build.ps1 -TestBuildAndInstallModule
