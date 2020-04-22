@@ -20,7 +20,7 @@ param (
     [parameter(ParameterSetName = 'Tests')]
     [switch]$TestUnitOnly,
     [parameter(ParameterSetName = 'Tests')]
-    [switch]$TestIntergrationOnly,
+    [switch]$TestIntergrationOnly
 )
 
 function PrerequisitesLoaded {
