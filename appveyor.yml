@@ -13,7 +13,4 @@ build: false
 
 # Kick off the CI/CD pipeline
 before_build:
-  - ps: . .\Build.ps1 -Test
-
-build_script:
-  - ps: . .\Build.ps1 -BuildModule
+  - ps: . .\Build.ps1 -TestBuildAndInstallModule

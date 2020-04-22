@@ -882,13 +882,13 @@ task Build Configure, CodeHealthReport, PrepareStage, GetPublicFunctions, Saniti
 
 }
 
-# Synopsis: Build, install and Test load the module.
-task BuildAndInstallModule Build, InstallModule, TestImportInstalledModule, BuildSessionCleanup, {
+# Synopsis: Test, Build, install and Test load the module.
+task TestBuildAndInstallModule Tests, Build, InstallModule, TestImportInstalledModule, BuildSessionCleanup, {
 
 }
 
-# Synopsis: Build, Install, Test load and Publish the module
-task BuildInstallTestAndPublishModule BuildAndInstallModule, PublishPSGallery, BuildSessionCleanup, {
+# Synopsis: Test, Build, Install, Test load and Publish the module
+task BuildInstallTestAndPublishModule TestBuildAndInstallModule, PublishPSGallery, BuildSessionCleanup, {
 
 }
 
