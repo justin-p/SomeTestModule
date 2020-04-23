@@ -1,6 +1,6 @@
 # Contributing to SomeTestModule
 
-Project Site: [https://github.com/justin-p/sometestmodule](https://github.com/justin-p/sometestmodule)
+Project Site: [https://www.github.com/justin-p/SomeTestModule](https://www.github.com/justin-p/SomeTestModule)
 
 There are some important things to be aware of if you plan on contributing to this project.
 

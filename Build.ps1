@@ -156,3 +156,4 @@ switch ($psCmdlet.ParameterSetName) {
         }
     }
 }
+

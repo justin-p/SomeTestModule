@@ -1,10 +1,10 @@
 # Run this in an administrative PowerShell prompt to install the SomeTestModule PowerShell module:
 #
-# iex (New-Object Net.WebClient).DownloadString("https://github.com/justin-p/sometestmodule/raw/master/Install.ps1")
+# iex (New-Object Net.WebClient).DownloadString("https://www.github.com/justin-p/SomeTestModule/raw/master/Install.ps1")
 
 # Some general variables
 $ModuleName = 'SomeTestModule'
-$DownloadURL = 'https://github.com/justin-p/sometestmodule/raw/master/release/SomeTestModule-current.zip'
+$DownloadURL = 'https://www.github.com/justin-p/SomeTestModule/raw/master/release/SomeTestModule-current.zip'
 
 # Download and install the module
 $webclient = New-Object System.Net.WebClient

@@ -59,11 +59,6 @@
         </dev:remarks>
       </command:example>
     </command:examples>
-    <command:relatedLinks>
-      <maml:navigationLink>
-        <maml:linkText>https://github.com/justin-p/SomeTestModule</maml:linkText>
-        <maml:uri>https://github.com/justin-p/SomeTestModule</maml:uri>
-      </maml:navigationLink>
-    </command:relatedLinks>
+    <command:relatedLinks />
   </command:command>
 </helpItems>

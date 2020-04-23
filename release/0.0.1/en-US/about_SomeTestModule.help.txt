@@ -14,4 +14,4 @@ KEYWORDS
     SomeTestModule
 
 SEE ALSO
-    https://github.com/justin-p/sometestmodule
+    https://www.github.com/justin-p/SomeTestModule
