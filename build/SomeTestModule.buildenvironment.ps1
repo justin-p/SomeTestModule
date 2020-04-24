@@ -17,10 +17,10 @@ if ((Get-Variable 'BuildEnv' -ErrorAction:SilentlyContinue) -eq $null) {
         Encoding = 'utf8'
         ModuleToBuild = 'SomeTestModule'
         ModuleVersion = '0.0.1'
-        ModuleWebsite = 'https://www.github.com/justin-p/SomeTestModule'
+        ModuleWebsite = 'https://www.github.com/justin-p/sometestmodule'
         ModuleCopyright = "(c) $((get-date).Year.ToString()) Justin Perdok. All rights reserved."
-        ModuleLicenseURI = 'https://www.github.com/justin-p/SomeTestModule/LICENSE.md'
-        ModuleTags = 'SomeTestModule' -split ','
+        ModuleLicenseURI = 'https://www.github.com/justin-p/sometestmodule/LICENSE.md'
+        ModuleTags = 'a' -split ','
         ModuleAuthor = 'Justin Perdok'
         ModuleDescription = 'SomeTestModule'
 
@@ -42,7 +42,7 @@ if ((Get-Variable 'BuildEnv' -ErrorAction:SilentlyContinue) -eq $null) {
 
         # If you want to update your current module build version automatically
         # after a successful psgallery publish set this to $true
-        OptionUpdateVersionAfterPublishing = $False
+        OptionUpdateVersionAfterPublishing = $True
 
         # Additional paths in the source module which should be copied over to the final build release
         AdditionalModulePaths = @('plugins')
@@ -61,7 +61,7 @@ if ((Get-Variable 'BuildEnv' -ErrorAction:SilentlyContinue) -eq $null) {
         FunctionTemplates = "src\templates"    # Location of function template files (*.tem)
 
         # If you will be publishing to the PowerShell Gallery you will need a Nuget API key (can get from the website)
-        # You should NOT enter this key here but rather manually enter it in the SomeTestModule.buildenvironment.json file with: Set-MBTBuildEnvironment -NugetAPIKey '<key>'
+        # You should NOT enter this key here but rather manually enter it in the SomeTestModule.buildenvironment.json file with: Set-MBBuildEnvironment -NugetAPIKey '<key>'
 
         NugetAPIKey  = ''
     }

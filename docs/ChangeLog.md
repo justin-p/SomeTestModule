@@ -1,6 +1,6 @@
 # SomeTestModule Change Log
 
-Project Site: [https://www.github.com/justin-p/SomeTestModule](https://www.github.com/justin-p/SomeTestModule)
+Project Site: [https://www.github.com/justin-p/sometestmodule](https://www.github.com/justin-p/sometestmodule)
 
-## Version 0.0.1
+## Version 0.01
 - Initial release

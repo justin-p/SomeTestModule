@@ -11,7 +11,7 @@ EXAMPLES
     TBD
 
 KEYWORDS
-    SomeTestModule
+    a
 
 SEE ALSO
-    https://www.github.com/justin-p/SomeTestModule
+    https://www.github.com/justin-p/sometestmodule

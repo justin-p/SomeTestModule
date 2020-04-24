@@ -1,7 +1,7 @@
 # SomeTestModule
 SomeTestModule
 
-Project Site: [https://www.github.com/justin-p/SomeTestModule](https://www.github.com/justin-p/SomeTestModule)
+Project Site: [https://www.github.com/justin-p/sometestmodule](https://www.github.com/justin-p/sometestmodule)
 
 ## What is SomeTestModule?
 SomeTestModule
